@@ -26,10 +26,12 @@ if [ "$ALLOW_FETCH" = true ]; then
   ARGS+=(--allow-fetch)
 fi
 
-if [ "$ENABLE_CONCURRENT" = true ]; then
-  ARGS+=(--cmode concurrent)
-else
-  ARGS+=(--cmode legacy)
+if [ "$1" != "check"]; then
+  if [ "$ENABLE_CONCURRENT" = true ]; then
+    ARGS+=(--cmode concurrent)
+  elif [ "$ENABLE_CONCURRENT" = true ]; then
+    ARGS+=(--cmode legacy)
+  fi
 fi
 
 ARGS+=(
