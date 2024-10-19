@@ -42,7 +42,6 @@ if [ "$1" != "check" ]; then
   ARGS+=(--creds "$CREDS_ABS_PATH")
 fi
 
-IFS=
 OUTPUT="$(dnscontrol "${ARGS[@]}")"
 EXIT_CODE="$?"
 
