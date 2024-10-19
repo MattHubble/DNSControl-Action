@@ -27,9 +27,9 @@ if [ "$ALLOW_FETCH" = true ]; then
 fi
 
 if [ "$ENABLE_CONCURRENT" = true ]; then
-  ARGS+=('--cmode=concurrent')
+  ARGS+=(--cmode concurrent)
 else
-  ARGS+=('--cmode=legacy')
+  ARGS+=(--cmode legacy)
 fi
 
 ARGS+=(
