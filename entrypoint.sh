@@ -44,6 +44,9 @@ if [ "$1" != "check" ]; then
   ARGS+=(--creds "$CREDS_ABS_PATH")
 fi
 
+echo "Running dnscontrol with args: ${ARGS[@]}"
+echo "Input args: $@"
+
 OUTPUT="$(dnscontrol "${ARGS[@]}")"
 EXIT_CODE="$?"
 
