@@ -35,10 +35,10 @@ ARGS+=(
 if [ "$1" != "check" ]; then
   ARGS+=(--creds "$CREDS_ABS_PATH")
 
-  if [ "$ENABLE_CONCURRENT" = true ]; then
-    ARGS+=(--cmode "concurrent")
-  elif [ "$ENABLE_CONCURRENT" = true ]; then
+  if [ "$ENABLE_CONCURRENT" = false ]; then
     ARGS+=(--cmode "legacy")
+  else
+    ARGS+=(--cmode "concurrent")
   fi
 fi
 
