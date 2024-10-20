@@ -28,9 +28,9 @@ fi
 
 if !(printf '%s\0' "$@" | grep -Fxqz -- 'check'); then
   if [ "$ENABLE_CONCURRENT" = true ]; then
-    ARGS+=(--cmode=concurrent)
+    ARGS+=("--cmode=concurrent")
   elif [ "$ENABLE_CONCURRENT" = true ]; then
-    ARGS+=(--cmode=legacy)
+    ARGS+=("--cmode=legacy")
   fi
 fi
 
