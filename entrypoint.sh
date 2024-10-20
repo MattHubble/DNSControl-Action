@@ -44,29 +44,34 @@ if [ "$1" != "check" ]; then
   ARGS+=(--creds "$CREDS_ABS_PATH")
 fi
 
-echo "Running dnscontrol with args: ${ARGS[@]}"
-echo "Input args: $@"
+OUTPUT=()
 
-OUTPUT="$(dnscontrol "${ARGS[@]}")"
-EXIT_CODE="$?"
+OUTPUT+=("Running dnscontrol with args: ${ARGS[@]}")
+OUTPUT+=("Input args: $@")
 
-echo "$OUTPUT"
+# OUTPUT="$(dnscontrol "${ARGS[@]}")"
+# EXIT_CODE="$?"
 
-# Filter output to reduce 'preview' PR comment length
-FILTERED_OUTPUT="$(echo "$OUTPUT" | /filter-preview-output.sh)"
+# echo "$OUTPUT"
 
-# Set output
-# https://github.com/orgs/community/discussions/26288#discussioncomment-3876281
-DELIMITER="DNSCONTROL-$RANDOM"
+# # Filter output to reduce 'preview' PR comment length
+# FILTERED_OUTPUT="$(echo "$OUTPUT" | /filter-preview-output.sh)"
 
-{
-  echo "output<<$DELIMITER"
-  echo "$OUTPUT"
-  echo "$DELIMITER"
+# # Set output
+# # https://github.com/orgs/community/discussions/26288#discussioncomment-3876281
+# DELIMITER="DNSCONTROL-$RANDOM"
 
-  echo "preview_comment<<$DELIMITER"
-  echo "$FILTERED_OUTPUT"
-  echo "$DELIMITER"
-} >>"$GITHUB_OUTPUT"
+# {
+#   echo "output<<$DELIMITER"
+#   echo "$OUTPUT"
+#   echo "$DELIMITER"
 
-exit $EXIT_CODE
+#   echo "preview_comment<<$DELIMITER"
+#   echo "$FILTERED_OUTPUT"
+#   echo "$DELIMITER"
+# } >>"$GITHUB_OUTPUT"
+
+GITHUB_OUTPUT=$OUTPUT
+
+# exit $EXIT_CODE
+exit 1
