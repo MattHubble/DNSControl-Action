@@ -26,14 +26,6 @@ if [ "$ALLOW_FETCH" = true ]; then
   ARGS+=(--allow-fetch)
 fi
 
-if !(printf '%s\0' "$@" | grep -Fxqz -- 'check'); then
-  if [ "$ENABLE_CONCURRENT" = true ]; then
-    ARGS+=("--cmode=concurrent")
-  elif [ "$ENABLE_CONCURRENT" = true ]; then
-    ARGS+=("--cmode=legacy")
-  fi
-fi
-
 ARGS+=(
   "$@"
   --config "$CONFIG_ABS_PATH"
@@ -42,6 +34,12 @@ ARGS+=(
 # 'check' sub-command doesn't require credentials
 if [ "$1" != "check" ]; then
   ARGS+=(--creds "$CREDS_ABS_PATH")
+
+  if [ "$ENABLE_CONCURRENT" = true ]; then
+    ARGS+=(--cmode "concurrent")
+  elif [ "$ENABLE_CONCURRENT" = true ]; then
+    ARGS+=(--cmode "legacy")
+  fi
 fi
 
 OUTPUT=()
