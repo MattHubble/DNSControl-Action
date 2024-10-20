@@ -26,7 +26,7 @@ if [ "$ALLOW_FETCH" = true ]; then
   ARGS+=(--allow-fetch)
 fi
 
-if [ "$0" != "check" ]; then
+if !(printf '%s\0' "$@" | grep -Fxqz -- 'check'); then
   if [ "$ENABLE_CONCURRENT" = true ]; then
     ARGS+=(--cmode=concurrent)
   elif [ "$ENABLE_CONCURRENT" = true ]; then
