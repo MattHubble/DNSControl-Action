@@ -49,29 +49,27 @@ OUTPUT=()
 OUTPUT+=("Running dnscontrol with args: ${ARGS[@]}")
 OUTPUT+=("Input args: $@")
 
-# OUTPUT="$(dnscontrol "${ARGS[@]}")"
-# EXIT_CODE="$?"
+OUTPUT="$(dnscontrol "${ARGS[@]}")"
+EXIT_CODE="$?"
 
-# echo "$OUTPUT"
+echo "$OUTPUT"
 
-# # Filter output to reduce 'preview' PR comment length
-# FILTERED_OUTPUT="$(echo "$OUTPUT" | /filter-preview-output.sh)"
+# Filter output to reduce 'preview' PR comment length
+FILTERED_OUTPUT="$(echo "$OUTPUT" | /filter-preview-output.sh)"
 
-# # Set output
-# # https://github.com/orgs/community/discussions/26288#discussioncomment-3876281
-# DELIMITER="DNSCONTROL-$RANDOM"
+# Set output
+# https://github.com/orgs/community/discussions/26288#discussioncomment-3876281
+DELIMITER="DNSCONTROL-$RANDOM"
 
-# {
-#   echo "output<<$DELIMITER"
-#   echo "$OUTPUT"
-#   echo "$DELIMITER"
+{
+  echo "output<<$DELIMITER"
+  echo "$OUTPUT"
+  echo "$DELIMITER"
 
-#   echo "preview_comment<<$DELIMITER"
-#   echo "$FILTERED_OUTPUT"
-#   echo "$DELIMITER"
-# } >>"$GITHUB_OUTPUT"
+  echo "preview_comment<<$DELIMITER"
+  echo "$FILTERED_OUTPUT"
+  echo "$DELIMITER"
+} >>"$GITHUB_OUTPUT"
 
-GITHUB_OUTPUT=$OUTPUT
-
-# exit $EXIT_CODE
+exit $EXIT_CODE
 exit 1
